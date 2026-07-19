@@ -1,66 +1,198 @@
 # OSAI-GSM
 AI Interface for GSM brick phones - Dump Smartphones
 
-# OSAI-GSM
+## VoiceKanban MVP
 
-**OSAI-GSM** is a minimalistic, voice-operated AI system for personal workflow automation.
-It reduces smartphone distractions and dopamine loops, focusing on **task execution, logging, and productivity**.
+A personal AI phone assistant that lets you manage tasks by calling a phone number from any phone.
 
----
+Example:
 
-## Concept
+> Call → "Create task record Hotmart lesson 3"
 
-* Capture thoughts, ideas, or commands via GSM phone, SMS, or Twilio
-* Automate tasks: Google Drive, Trello, Gmail, file generation
-* Maintain focus and autonomy without social or emotional dependency
-* Operates as **transactional AI**: input → process → structured output
+Response:
+
+> "Task created."
 
 ---
 
-## Explicit Modes
+# Goal
 
-| Mode       | Description                         |
-| ---------- | ----------------------------------- |
-| `LOG`      | Record ideas or notes               |
-| `ANALYZE`  | Organize or classify data           |
-| `TASK`     | Create/update tasks                 |
-| `SUMMARY`  | Summarize logs or reports           |
-| `GENERATE` | Generate files (Docs, PDFs, Sheets) |
-| `SEND`     | Send emails or messages             |
-| `STUDY`    | Explain technical concepts          |
-| `DECIDE`   | List options and pros/cons          |
-
-> Every command maps to a mode. **No conversational or emotional responses.**
+Replace smartphone task capture with voice calls.
 
 ---
 
-## Natural Command Examples
+# Features
 
-* “Generate weekly report for projects X and Y and send via email” → `GENERATE` + `SEND`
-* “Log my workflow improvement idea” → `LOG`
-* “Summarize Trello tasks for last week” → `SUMMARY`
+* Create task
+* Complete task
+* List tasks
+* Move task between columns
 
----
+Kanban:
 
-## Principles
-
-1. **Transactional Only** – discrete, goal-oriented interactions
-2. **Low Profile** – GSM/voice-based, minimal interface
-3. **Autonomy** – human retains final decision
-4. **No Personification** – AI is a tool, not a companion
-5. **Validation** – sensitive actions require confirmation
-6. **Logging** – all outputs are reviewable
+* TODO
+* DOING
+* DONE
 
 ---
 
-## Quick Start
+# Tech Stack
 
-1. Configure GSM phone with Twilio (Voice/SMS/WhatsApp)
-2. Connect APIs (Drive, Trello, Gmail)
-3. Implement STT → Mode Router → Action → Logging → TTS
-4. Define natural commands mapped to explicit modes
+* Twilio (phone number)
+* Gemini API
+* SQLite
+* Python FastAPI
+* Text-to-Speech
 
 ---
 
-> **Disclaimer:** OSAI-GSM is a productivity tool, not a conversational companion. Human oversight is required.
+# Architecture
 
+Phone Call
+
+↓
+
+Speech-to-Text
+
+↓
+
+Gemini
+
+↓
+
+Task Engine
+
+↓
+
+SQLite
+
+↓
+
+Voice Response
+
+---
+
+# Implementation Steps
+
+## Step 1 — Database
+
+Create SQLite database.
+
+Time: 30 minutes
+
+Output:
+
+* tasks table
+* CRUD functions
+
+---
+
+## Step 2 — Task API
+
+Create endpoints:
+
+* create_task
+* move_task
+* complete_task
+* list_tasks
+
+Time: 1 hour
+
+---
+
+## Step 3 — Gemini Parser
+
+Convert natural language into actions.
+
+Example:
+
+"Create task buy HDMI cable"
+
+↓
+
+```json
+{
+  "action": "create_task",
+  "title": "Buy HDMI cable"
+}
+```
+
+Time: 1–2 hours
+
+---
+
+## Step 4 — Telephony
+
+Connect incoming calls.
+
+Time: 2–3 hours
+
+---
+
+## Step 5 — Speech-to-Text
+
+Convert caller voice to text.
+
+Time: 1 hour
+
+---
+
+## Step 6 — Text-to-Speech
+
+Generate voice confirmations.
+
+Example:
+
+> "Task created."
+
+Time: 1 hour
+
+---
+
+## Step 7 — End-to-End Testing
+
+Test:
+
+* Create task
+* Move task
+* Complete task
+* List tasks
+
+Time: 2 hours
+
+---
+
+# Total Estimate
+
+Experienced automation developer:
+
+8–12 hours
+
+Weekend project:
+
+1–2 days
+
+---
+
+# MVP Success Criteria
+
+User can:
+
+* Call from any phone
+* Speak a command
+* Update tasks
+* Receive voice confirmation
+
+Without opening an app or using a smartphone.
+
+---
+
+# Future Versions
+
+* Calendar integration
+* WhatsApp integration
+* Daily AI review
+* Priority levels
+* Voice reminders
+* CRM support
+* Multi-user support
